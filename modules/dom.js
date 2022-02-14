@@ -56,7 +56,7 @@ export const clickingSeats = (arr) => {
             details.appendChild(_key);
           } else {
             let _key1 = document.createElement("p");
-            _key1.innerText = "no spml";
+            _key1.innerText = "no special meal";
             details.appendChild(_key1);
           }
         }
