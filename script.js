@@ -1,13 +1,13 @@
 import { B787_8 } from "./modules/aircraftTypes.js";
 import {
-  createAircraft,
-  occupiedSeatsAndSpecialMeals,
-  clickingSeats,
+    createAircraft,
+    occupiedSeatsAndSpecialMeals,
+    clickingSeats,
 } from "./modules/dom.js";
 import {
-  percentageAboveNum,
-  shuffle,
-  createCurrentFlightPax,
+    percentageAboveNum,
+    shuffle,
+    createCurrentFlightPax,
 } from "./modules/utils.js";
 import { Passenger } from "./modules/classes/index.js";
 import { firstNames, lastNames, specialMeals } from "./modules/constants.js";
@@ -15,22 +15,28 @@ import { firstNames, lastNames, specialMeals } from "./modules/constants.js";
 const percentageAbove75 = percentageAboveNum(0.75);
 const maxOccupancy = B787_8.maxOccupancy;
 const currentOccupancyNumber = Math.ceil(maxOccupancy * percentageAbove75);
+
+console.log(percentageAbove75, maxOccupancy, currentOccupancyNumber);
+
 const flatSeatChart = B787_8.seatChart.flat();
 const currentOccupancyPaxArray = shuffle(flatSeatChart).slice(
-  0,
-  currentOccupancyNumber
+    0,
+    currentOccupancyNumber
 );
 
-createAircraft(B787_8.seatChart);
+createAircraft(B787_8);
 
 const currentFlightPax = createCurrentFlightPax(
-  firstNames,
-  lastNames,
-  currentOccupancyNumber,
-  currentOccupancyPaxArray,
-  specialMeals,
-  Passenger
+    firstNames,
+    lastNames,
+    currentOccupancyNumber,
+    currentOccupancyPaxArray,
+    specialMeals,
+    Passenger
 );
 
-occupiedSeatsAndSpecialMeals(currentFlightPax);
+setTimeout(() => {
+    occupiedSeatsAndSpecialMeals(currentFlightPax);
+}, 1000);
+
 clickingSeats(currentFlightPax);
